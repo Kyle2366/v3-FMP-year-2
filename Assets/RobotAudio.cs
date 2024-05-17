@@ -10,6 +10,7 @@ public enum RobotSpeech
     unHappySpeech,
     idle,
     transmission,
+    hint,
 
 
 
@@ -28,10 +29,13 @@ public class RobotAudio : MonoBehaviour
     public AudioClip intro2;
     public AudioClip transmission1;
     public AudioClip transmission2;
+    public AudioClip cardHint;
     RobotSpeech rS;
 
     public bool stop;
     public bool cardInsert;
+
+    public bool speaking;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,45 +49,76 @@ public class RobotAudio : MonoBehaviour
     void Update()
     {
         DoLogic();
+        print(delayTime);
+        if (cardInsert)
+        {
+            print("Card has been inserted");
+        }
+        if (!cardInsert)
+        {
+            print("Card has not been inserted");
+        }
     }
 
     public void DoLogic()
     {
         if (rS == RobotSpeech.intro)
         {
+            print("Intro");
             delayTime -= Time.deltaTime;
             IntroState();
         }
         if (rS == RobotSpeech.idle)
         {
-            if (cardInsert)
-            {
-                rS = RobotSpeech.transmission;
-            }
+            IdleState();
         }
         if (rS == RobotSpeech.transmission)
         {
-            TransmissionState();
+            print("Transmission");
+            StartCoroutine(TransmissionState());
         }
     }
     
-
+    public void IdleState()
+    {
+        delayTime -= Time.deltaTime;
+        print("Idle");
+        if (cardInsert)
+        {
+            rS = RobotSpeech.transmission;
+        }
+        else
+        {
+            aud.PlayOneShot(cardHint, 2f);
+        }
+    }
     public void IntroState()
     {
+   
         if (delayTime > 0 && !stop)
         {
             aud.PlayOneShot(intro, 2f);
             stop = true;
         }
-        if (delayTime <= 0)
+        if (delayTime <= 0 && !speaking)
         {
             aud.PlayOneShot(intro2);
+            speaking = true;
             rS = RobotSpeech.idle;
         }
 
     }
-    public void TransmissionState()
+    public IEnumerator TransmissionState()
     {
-        aud.PlayOneShot(transmission1);
+        if (rS == RobotSpeech.transmission && !stop)
+        {
+            stop = true;
+            aud.PlayOneShot(transmission1);
+            yield return new WaitForSeconds(2f);
+            aud.PlayOneShot(transmission2);
+            yield return new WaitForSeconds(5f);
+            aud.PlayOneShot(unHappy, 2f);
+            rS = RobotSpeech.idle;
+        }
     }
 }

@@ -6,14 +6,17 @@ public class FireExtinguisher : MonoBehaviour
 {
     firespawner fS;
     public Transform sprayPoint;
-    public int shotDis = 10;
+    public int shotDis = 1000;
     public ParticleSystem foam;
+
+    public float aliveTime;
 
     public bool active;
     // Start is called before the first frame update
     void Start()
     {
         active = false;
+        aliveTime = 10;
     }
 
     // Update is called once per frame
@@ -27,9 +30,15 @@ public class FireExtinguisher : MonoBehaviour
     {
         if (active)
         {
+
+            aliveTime -= Time.deltaTime;
+            if (aliveTime <= 0)
+            {
+                Destroy(gameObject);    
+            }
             foam.gameObject.SetActive(true);
             print("SPRAY");
-            if (Physics.Raycast(sprayPoint.position, transform.forward, out RaycastHit hitInfo, shotDis))
+            if (Physics.Raycast(sprayPoint.position, transform.right, out RaycastHit hitInfo, shotDis))
             {
                 if (hitInfo.collider.tag == "fire1")
                 {

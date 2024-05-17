@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class CardScript : MonoBehaviour
 {
+    RobotAudio rA;
     public GameObject card;
     public Transform cardPoint;
+    public GameObject robotAudio;
 
 
     // Start is called before the first frame update
@@ -25,8 +27,7 @@ public class CardScript : MonoBehaviour
         if (col.gameObject.tag == "Card")
         {
             print("Card Slot!");
-            
-         
+            robotAudio.GetComponent<RobotAudio>().cardInsert = true;
         }
     }
 }

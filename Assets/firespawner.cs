@@ -28,7 +28,7 @@ public class firespawner : MonoBehaviour
     public bool deathCountdown;
     int[] fireList = { 1, 2, 3, 4, 5, 6 };
     int fireIndex;
-    // Start is called before the first frame update
+    
     void Start()
     {
         readyToStart = true;
@@ -43,7 +43,7 @@ public class firespawner : MonoBehaviour
         fireIndex = 1;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if (readyToStart)
@@ -67,7 +67,6 @@ public class firespawner : MonoBehaviour
             {
                 fireCount++;
                 Fire1.SetActive(true);
-               
             }
             if (fireList[fireIndex] == 2 && !Fire2On)
             {
