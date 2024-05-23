@@ -31,7 +31,7 @@ public class firespawner : MonoBehaviour
     
     void Start()
     {
-        readyToStart = true;
+        readyToStart = false;
         Fire1On = false;
         Fire2On = false;
         Fire3On = false;
@@ -57,6 +57,7 @@ public class firespawner : MonoBehaviour
 
     public void Spawner()
     {
+        
        timer -= Time.deltaTime;
         if (!countdown)
         {

@@ -36,6 +36,9 @@ public class RobotAudio : MonoBehaviour
     public bool cardInsert;
 
     public bool speaking;
+    public bool hint;
+    public bool timerSet;
+    public bool fireHint;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +52,7 @@ public class RobotAudio : MonoBehaviour
     void Update()
     {
         DoLogic();
-        print(delayTime);
+   
         if (cardInsert)
         {
             print("Card has been inserted");
@@ -70,26 +73,54 @@ public class RobotAudio : MonoBehaviour
         }
         if (rS == RobotSpeech.idle)
         {
+            print("idle");
             IdleState();
+            
         }
         if (rS == RobotSpeech.transmission)
         {
             print("Transmission");
             StartCoroutine(TransmissionState());
         }
+        if (rS == RobotSpeech.fireExtinguisherSpeech)
+        {
+            FireExtinguisherSpeechState();
+        }
     }
     
+    public void FireExtinguisherSpeechState()
+    {
+        if (!fireHint)
+        {
+            aud.PlayOneShot(fireExtinguisher);
+            fireHint = true;
+        }
+        
+    }
     public void IdleState()
     {
         delayTime -= Time.deltaTime;
+        if (delayTime <= 0 && !timerSet)
+        {
+            delayTime = 5f;
+            timerSet = true;
+        }
+        
+       
         print("Idle");
         if (cardInsert)
         {
+            stop = false;
             rS = RobotSpeech.transmission;
         }
         else
         {
-            aud.PlayOneShot(cardHint, 2f);
+            if (!hint && delayTime <=0 )
+            {
+                hint = true;
+                aud.PlayOneShot(cardHint, 2f);
+            }
+            
         }
     }
     public void IntroState()
@@ -105,6 +136,7 @@ public class RobotAudio : MonoBehaviour
             aud.PlayOneShot(intro2);
             speaking = true;
             rS = RobotSpeech.idle;
+            
         }
 
     }
@@ -113,12 +145,14 @@ public class RobotAudio : MonoBehaviour
         if (rS == RobotSpeech.transmission && !stop)
         {
             stop = true;
-            aud.PlayOneShot(transmission1);
+            aud.PlayOneShot(transmission1 ,2f);
             yield return new WaitForSeconds(2f);
-            aud.PlayOneShot(transmission2);
+            aud.PlayOneShot(transmission2 ,2f);
             yield return new WaitForSeconds(5f);
             aud.PlayOneShot(unHappy, 2f);
-            rS = RobotSpeech.idle;
+            yield return new WaitForSeconds(5f);
+            rS = RobotSpeech.fireExtinguisherSpeech;
+            StopAllCoroutines();
         }
     }
 }

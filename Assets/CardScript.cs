@@ -8,6 +8,7 @@ public class CardScript : MonoBehaviour
     public GameObject card;
     public Transform cardPoint;
     public GameObject robotAudio;
+    public GameObject shuttle;
 
 
     // Start is called before the first frame update
@@ -28,6 +29,7 @@ public class CardScript : MonoBehaviour
         {
             print("Card Slot!");
             robotAudio.GetComponent<RobotAudio>().cardInsert = true;
+            shuttle.GetComponent<Animator>().Play("move");
         }
     }
 }
