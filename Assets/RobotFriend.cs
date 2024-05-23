@@ -225,7 +225,7 @@ public class RobotFriend : MonoBehaviour
         }
         if (delayTimer < 0)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
     }
 

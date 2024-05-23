@@ -110,8 +110,7 @@ public class ButtonManager : MonoBehaviour
             gas.GetComponent<ParticleSystem>().Play();
             rF.GetComponent<RobotFriend>().gasOn = true;
             yield return new WaitForSeconds(10f);
-            string currentSceneName = SceneManager.GetActiveScene().name;
-            SceneManager.LoadScene(currentSceneName);
+            SceneManager.LoadScene(0);
         }
        
     }
