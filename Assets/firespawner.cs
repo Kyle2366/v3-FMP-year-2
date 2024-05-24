@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class firespawner : MonoBehaviour
 {
+    public AudioSource aud;
+    public AudioClip explode;
     public GameObject Fire1;
     public GameObject Fire2;
     public GameObject Fire3;
@@ -52,7 +54,7 @@ public class firespawner : MonoBehaviour
         }
   
         DeathCount();
-       
+        print("death counter time left;" + timeToDeath);
     }
 
     public void Spawner()
@@ -61,6 +63,7 @@ public class firespawner : MonoBehaviour
        timer -= Time.deltaTime;
         if (!countdown)
         {
+            print("FIRE ON");
             timer = Random.Range(6, 10);
             countdown = true;
             fireIndex = Random.Range(1, 6);
@@ -68,6 +71,7 @@ public class firespawner : MonoBehaviour
             {
                 fireCount++;
                 Fire1.SetActive(true);
+                
             }
             if (fireList[fireIndex] == 2 && !Fire2On)
             {
@@ -105,29 +109,38 @@ public class firespawner : MonoBehaviour
     {
         if (fireCount < 1 )
         {
+            deathCountdown = false;
             timeToDeath = 100;
             print(timeToDeath);
         }
-        if (fireCount == 2)
+        if (fireCount >= 2 && !deathCountdown)
         {
             deathCountdown = true;
+            timeToDeath = 10f;
         }
         if (deathCountdown)
         {
             
             if (fireCount == 3)
             {
-                timeToDeath = 15;
+                timeToDeath--;
             }
             if (fireCount > 3)
             {
-                timeToDeath =- 2;
+                timeToDeath --;
             }
             timeToDeath -= Time.deltaTime;
         }
+        if (deathCountdown && timeToDeath <= 1)
+        {
+            aud.PlayOneShot(explode, 2f);
+            aud.PlayOneShot(explode, 2f);
+        }
+
         if (deathCountdown && timeToDeath <= 0)
         {
-            
+            print("DEAD");
+            SceneManager.LoadScene(0);
         }
     }
 }

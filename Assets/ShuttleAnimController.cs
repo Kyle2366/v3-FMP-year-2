@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ShuttleAnimController : MonoBehaviour
 {
     public GameObject fireController;
     public AudioSource aud;
     public AudioClip explosion;
+    public AudioClip fireWarn;
+    public AudioClip end;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,5 +35,19 @@ public class ShuttleAnimController : MonoBehaviour
     {
         aud.PlayOneShot(explosion, 2f);
     }
-    public void 
+    public void FireWarning()
+    {
+        aud.PlayOneShot(fireWarn, 2f);
+    }
+
+    public void EndOfLevel()
+    {
+        aud.PlayOneShot(end, 2f);
+        Invoke("Restart", 6f);
+    }
+    public void Restart()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 }

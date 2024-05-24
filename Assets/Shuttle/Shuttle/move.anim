@@ -369,12 +369,12 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 298.45
+    m_StopTime: 299.13333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
@@ -1415,21 +1415,28 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 17.05
+  - time: 58.25
     functionName: Explosion
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 36.9
+  - time: 59.533333
+    functionName: FireWarning
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 60.333332
     functionName: StartFire
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 67.583336
+  - time: 109.61667
     functionName: 
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -1438,6 +1445,13 @@ AnimationClip:
     messageOptions: 0
   - time: 156.71666
     functionName: 
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 299.13333
+    functionName: EndOfLevel
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

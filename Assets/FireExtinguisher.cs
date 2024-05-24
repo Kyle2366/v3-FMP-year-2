@@ -45,6 +45,7 @@ public class FireExtinguisher : MonoBehaviour
                     print("fire hit");
                     hitInfo.collider.gameObject.SetActive(false);
                     hitInfo.collider.gameObject.GetComponent<firespawner>().Fire1On = false;
+                    hitInfo.collider.gameObject.GetComponent<firespawner>().fireCount--;
                 }
                 if (hitInfo.collider.tag == "fire2")
                 {
