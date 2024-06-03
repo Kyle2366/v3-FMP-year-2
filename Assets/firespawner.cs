@@ -131,7 +131,7 @@ public class firespawner : MonoBehaviour
             }
             timeToDeath -= Time.deltaTime;
         }
-        if (deathCountdown && timeToDeath <= 1)
+        if (deathCountdown && timeToDeath <= 2)
         {
             aud.PlayOneShot(explode, 2f);
             aud.PlayOneShot(explode, 2f);

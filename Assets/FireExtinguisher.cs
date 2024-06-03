@@ -42,6 +42,7 @@ public class FireExtinguisher : MonoBehaviour
             {
                 if (hitInfo.collider.tag == "fire1")
                 {
+                    hitInfo.collider.GetComponentInParent<firespawner>().fireCount--;
                     print("fire hit");
                     hitInfo.collider.gameObject.SetActive(false);
                     hitInfo.collider.gameObject.GetComponent<firespawner>().Fire1On = false;
@@ -49,30 +50,35 @@ public class FireExtinguisher : MonoBehaviour
                 }
                 if (hitInfo.collider.tag == "fire2")
                 {
+                    hitInfo.collider.GetComponentInParent<firespawner>().fireCount--;
                     print("fire hit");
                     hitInfo.collider.gameObject.SetActive(false);
                     hitInfo.collider.gameObject.GetComponent<firespawner>().Fire2On = false;
                 }
                 if (hitInfo.collider.tag == "fire3")
                 {
+                    hitInfo.collider.GetComponentInParent<firespawner>().fireCount--;
                     print("fire hit");
                     hitInfo.collider.gameObject.SetActive(false);
                     hitInfo.collider.gameObject.GetComponent<firespawner>().Fire3On = false;
                 }
                 if (hitInfo.collider.tag == "fire4")
                 {
+                    hitInfo.collider.GetComponentInParent<firespawner>().fireCount--;
                     print("fire hit");
                     hitInfo.collider.gameObject.SetActive(false);
                     hitInfo.collider.gameObject.GetComponent<firespawner>().Fire4On = false;
                 }
                 if (hitInfo.collider.tag == "fire5")
                 {
+                    hitInfo.collider.GetComponentInParent<firespawner>().fireCount--;
                     print("fire hit");
                     hitInfo.collider.gameObject.SetActive(false);
                     hitInfo.collider.gameObject.GetComponent<firespawner>().Fire5On = false;
                 }
                 if (hitInfo.collider.tag == "fire6")
                 {
+                    hitInfo.collider.GetComponentInParent<firespawner>().fireCount--;
                     print("fire hit");
                     hitInfo.collider.gameObject.SetActive(false);
                     hitInfo.collider.gameObject.GetComponent<firespawner>().Fire6On = false;
