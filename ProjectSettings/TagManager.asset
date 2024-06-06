@@ -27,6 +27,8 @@ TagManager:
   - fire5
   - fire6
   - card
+  - Start
+  - Settings
   layers:
   - Default
   - TransparentFX
