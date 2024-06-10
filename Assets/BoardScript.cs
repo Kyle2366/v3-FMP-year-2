@@ -32,9 +32,13 @@ public class BoardScript : MonoBehaviour
         menu.GetComponent<Animator>().Play("Menu move");
     }
 
+    public void MenuReverse()
+    {
+        settingsCube.SetActive(false);
+    }
     public void OnPanelSelect()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void Music()
